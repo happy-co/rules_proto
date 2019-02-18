@@ -1,16 +1,16 @@
 # `grpc-gateway`
 
-| Rule | Description |
-| ---: | :--- |
-| [gateway_grpc_compile](#gateway_grpc_compile) | Generates grpc-gateway *.go files |
-| [gateway_swagger_compile](#gateway_swagger_compile) | Generates grpc-gateway swagger *.json files |
-| [gateway_grpc_library](#gateway_grpc_library) | Generates grpc-gateway library files |
+|                                                Rule | Description                                  |
+| --------------------------------------------------: | :------------------------------------------- |
+|       [gateway_grpc_compile](#gateway_grpc_compile) | Generates grpc-gateway \*.go files           |
+| [gateway_swagger_compile](#gateway_swagger_compile) | Generates grpc-gateway swagger \*.json files |
+|       [gateway_grpc_library](#gateway_grpc_library) | Generates grpc-gateway library files         |
 
 ---
 
 ## `gateway_grpc_compile`
 
-Generates grpc-gateway *.go files
+Generates grpc-gateway \*.go files
 
 ### `WORKSPACE`
 
@@ -34,10 +34,6 @@ go_register_toolchains()
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 
 gazelle_dependencies()
-
-load("@grpc_ecosystem_grpc_gateway//:repositories.bzl", grpc_gateway_repositories = "repositories")
-
-grpc_gateway_repositories()
 ```
 
 ### `BUILD.bazel`
@@ -67,29 +63,29 @@ def gateway_grpc_compile(**kwargs):
 
 ### Mandatory Attributes
 
-| Name | Type | Default | Description |
-| ---: | :--- | ------- | ----------- |
-| deps   | `list<ProtoInfo>` | `[]`    | List of labels that provide a `ProtoInfo` (`native.proto_library`)          |
+| Name | Type              | Default | Description                                                        |
+| ---: | :---------------- | ------- | ------------------------------------------------------------------ |
+| deps | `list<ProtoInfo>` | `[]`    | List of labels that provide a `ProtoInfo` (`native.proto_library`) |
 
 ### Optional Attributes
 
-| Name | Type | Default | Description |
-| ---: | :--- | ------- | ----------- |
-| plugins   | `list<ProtoPluginInfo>` | `[]`    | List of labels that provide a `ProtoPluginInfo`          |
-| plugin_options   | `list<string>` | `[]`    | List of additional 'global' plugin options (applies to all plugins)          |
-| outputs   | `list<generated file>` | `[]`    | List of additional expected generated file outputs          |
-| has_services   | `bool` | `False`    | If the proto files(s) have a service rpc, generate grpc outputs          |
-| protoc   | `executable file` | `@com_google_protobuf//:protoc`    | The protocol compiler tool          |
-| verbose   | `int` | `0`    | 1: *show command*, 2: *show sandbox after*, 3: *show sandbox before*          |
-| include_imports   | `bool` | `True`    | Pass the --include_imports argument to the protoc_plugin          |
-| include_source_info   | `bool` | `True`    | Pass the --include_source_info argument to the protoc_plugin          |
-| transitive   | `bool` | `False`    | Generated outputs for *.proto directly named in `deps` AND all transitive proto_library dependencies          |
+|                Name | Type                    | Default                         | Description                                                                                           |
+| ------------------: | :---------------------- | ------------------------------- | ----------------------------------------------------------------------------------------------------- |
+|             plugins | `list<ProtoPluginInfo>` | `[]`                            | List of labels that provide a `ProtoPluginInfo`                                                       |
+|      plugin_options | `list<string>`          | `[]`                            | List of additional 'global' plugin options (applies to all plugins)                                   |
+|             outputs | `list<generated file>`  | `[]`                            | List of additional expected generated file outputs                                                    |
+|        has_services | `bool`                  | `False`                         | If the proto files(s) have a service rpc, generate grpc outputs                                       |
+|              protoc | `executable file`       | `@com_google_protobuf//:protoc` | The protocol compiler tool                                                                            |
+|             verbose | `int`                   | `0`                             | 1: _show command_, 2: _show sandbox after_, 3: _show sandbox before_                                  |
+|     include_imports | `bool`                  | `True`                          | Pass the --include_imports argument to the protoc_plugin                                              |
+| include_source_info | `bool`                  | `True`                          | Pass the --include_source_info argument to the protoc_plugin                                          |
+|          transitive | `bool`                  | `False`                         | Generated outputs for \*.proto directly named in `deps` AND all transitive proto_library dependencies |
 
 ---
 
 ## `gateway_swagger_compile`
 
-Generates grpc-gateway swagger *.json files
+Generates grpc-gateway swagger \*.json files
 
 ### `WORKSPACE`
 
@@ -113,10 +109,6 @@ go_register_toolchains()
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 
 gazelle_dependencies()
-
-load("@grpc_ecosystem_grpc_gateway//:repositories.bzl", grpc_gateway_repositories = "repositories")
-
-grpc_gateway_repositories()
 ```
 
 ### `BUILD.bazel`
@@ -146,23 +138,23 @@ def gateway_swagger_compile(**kwargs):
 
 ### Mandatory Attributes
 
-| Name | Type | Default | Description |
-| ---: | :--- | ------- | ----------- |
-| deps   | `list<ProtoInfo>` | `[]`    | List of labels that provide a `ProtoInfo` (`native.proto_library`)          |
+| Name | Type              | Default | Description                                                        |
+| ---: | :---------------- | ------- | ------------------------------------------------------------------ |
+| deps | `list<ProtoInfo>` | `[]`    | List of labels that provide a `ProtoInfo` (`native.proto_library`) |
 
 ### Optional Attributes
 
-| Name | Type | Default | Description |
-| ---: | :--- | ------- | ----------- |
-| plugins   | `list<ProtoPluginInfo>` | `[]`    | List of labels that provide a `ProtoPluginInfo`          |
-| plugin_options   | `list<string>` | `[]`    | List of additional 'global' plugin options (applies to all plugins)          |
-| outputs   | `list<generated file>` | `[]`    | List of additional expected generated file outputs          |
-| has_services   | `bool` | `False`    | If the proto files(s) have a service rpc, generate grpc outputs          |
-| protoc   | `executable file` | `@com_google_protobuf//:protoc`    | The protocol compiler tool          |
-| verbose   | `int` | `0`    | 1: *show command*, 2: *show sandbox after*, 3: *show sandbox before*          |
-| include_imports   | `bool` | `True`    | Pass the --include_imports argument to the protoc_plugin          |
-| include_source_info   | `bool` | `True`    | Pass the --include_source_info argument to the protoc_plugin          |
-| transitive   | `bool` | `False`    | Generated outputs for *.proto directly named in `deps` AND all transitive proto_library dependencies          |
+|                Name | Type                    | Default                         | Description                                                                                           |
+| ------------------: | :---------------------- | ------------------------------- | ----------------------------------------------------------------------------------------------------- |
+|             plugins | `list<ProtoPluginInfo>` | `[]`                            | List of labels that provide a `ProtoPluginInfo`                                                       |
+|      plugin_options | `list<string>`          | `[]`                            | List of additional 'global' plugin options (applies to all plugins)                                   |
+|             outputs | `list<generated file>`  | `[]`                            | List of additional expected generated file outputs                                                    |
+|        has_services | `bool`                  | `False`                         | If the proto files(s) have a service rpc, generate grpc outputs                                       |
+|              protoc | `executable file`       | `@com_google_protobuf//:protoc` | The protocol compiler tool                                                                            |
+|             verbose | `int`                   | `0`                             | 1: _show command_, 2: _show sandbox after_, 3: _show sandbox before_                                  |
+|     include_imports | `bool`                  | `True`                          | Pass the --include_imports argument to the protoc_plugin                                              |
+| include_source_info | `bool`                  | `True`                          | Pass the --include_source_info argument to the protoc_plugin                                          |
+|          transitive | `bool`                  | `False`                         | Generated outputs for \*.proto directly named in `deps` AND all transitive proto_library dependencies |
 
 ---
 
@@ -192,10 +184,6 @@ go_register_toolchains()
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
 
 gazelle_dependencies()
-
-load("@grpc_ecosystem_grpc_gateway//:repositories.bzl", grpc_gateway_repositories = "repositories")
-
-grpc_gateway_repositories()
 ```
 
 ### `BUILD.bazel`
@@ -242,21 +230,20 @@ def gateway_grpc_library(**kwargs):
 
 ### Mandatory Attributes
 
-| Name | Type | Default | Description |
-| ---: | :--- | ------- | ----------- |
-| deps   | `list<ProtoInfo>` | `[]`    | List of labels that provide a `ProtoInfo` (`native.proto_library`)          |
+| Name | Type              | Default | Description                                                        |
+| ---: | :---------------- | ------- | ------------------------------------------------------------------ |
+| deps | `list<ProtoInfo>` | `[]`    | List of labels that provide a `ProtoInfo` (`native.proto_library`) |
 
 ### Optional Attributes
 
-| Name | Type | Default | Description |
-| ---: | :--- | ------- | ----------- |
-| plugins   | `list<ProtoPluginInfo>` | `[]`    | List of labels that provide a `ProtoPluginInfo`          |
-| plugin_options   | `list<string>` | `[]`    | List of additional 'global' plugin options (applies to all plugins)          |
-| outputs   | `list<generated file>` | `[]`    | List of additional expected generated file outputs          |
-| has_services   | `bool` | `False`    | If the proto files(s) have a service rpc, generate grpc outputs          |
-| protoc   | `executable file` | `@com_google_protobuf//:protoc`    | The protocol compiler tool          |
-| verbose   | `int` | `0`    | 1: *show command*, 2: *show sandbox after*, 3: *show sandbox before*          |
-| include_imports   | `bool` | `True`    | Pass the --include_imports argument to the protoc_plugin          |
-| include_source_info   | `bool` | `True`    | Pass the --include_source_info argument to the protoc_plugin          |
-| transitive   | `bool` | `False`    | Generated outputs for *.proto directly named in `deps` AND all transitive proto_library dependencies          |
-
+|                Name | Type                    | Default                         | Description                                                                                           |
+| ------------------: | :---------------------- | ------------------------------- | ----------------------------------------------------------------------------------------------------- |
+|             plugins | `list<ProtoPluginInfo>` | `[]`                            | List of labels that provide a `ProtoPluginInfo`                                                       |
+|      plugin_options | `list<string>`          | `[]`                            | List of additional 'global' plugin options (applies to all plugins)                                   |
+|             outputs | `list<generated file>`  | `[]`                            | List of additional expected generated file outputs                                                    |
+|        has_services | `bool`                  | `False`                         | If the proto files(s) have a service rpc, generate grpc outputs                                       |
+|              protoc | `executable file`       | `@com_google_protobuf//:protoc` | The protocol compiler tool                                                                            |
+|             verbose | `int`                   | `0`                             | 1: _show command_, 2: _show sandbox after_, 3: _show sandbox before_                                  |
+|     include_imports | `bool`                  | `True`                          | Pass the --include_imports argument to the protoc_plugin                                              |
+| include_source_info | `bool`                  | `True`                          | Pass the --include_source_info argument to the protoc_plugin                                          |
+|          transitive | `bool`                  | `False`                         | Generated outputs for \*.proto directly named in `deps` AND all transitive proto_library dependencies |

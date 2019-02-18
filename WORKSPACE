@@ -324,10 +324,6 @@ load("//github.com/grpc-ecosystem/grpc-gateway:deps.bzl", "gateway_grpc_library"
 
 gateway_grpc_library()
 
-load("@grpc_ecosystem_grpc_gateway//:repositories.bzl", grpc_gateway_repositories = "repositories")
-
-grpc_gateway_repositories()
-
 load("//tools/exgen:deps.bzl", "exgen_deps")
 
 exgen_deps()

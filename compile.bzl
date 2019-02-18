@@ -171,9 +171,11 @@ def _get_output_filename(src, plugin, pattern):
     elif basename.endswith(".protodevel"):
         basename = basename[:-11]
 
-    filename = basename
+    filename = pattern
 
-    if pattern.find("{basename}") != -1:
+    if not pattern:
+        filename = basename
+    elif pattern.find("{basename}") != -1:
         filename = pattern.replace("{basename}", basename)
     elif pattern.find("{basename|pascal}") != -1:
         filename = pattern.replace("{basename|pascal}", _pascal_case(basename))
@@ -181,7 +183,7 @@ def _get_output_filename(src, plugin, pattern):
         filename = pattern.replace("{basename|pascal|objc}", _pascal_objc(basename))
     elif pattern.find("{basename|rust_keyword}") != -1:
         filename = pattern.replace("{basename|rust_keyword}", _rust_keyword(basename))
-    else:
+    elif pattern.startswith("."):
         filename = basename + pattern
 
     return filename
@@ -510,9 +512,9 @@ def proto_compile_impl(ctx):
             if ctx.attr.transitive:
                 targets[src] = proto
 
-    ###
-    ### Part 3cb: apply transitivity rules
-    ###
+                ###
+                ### Part 3cb: apply transitivity rules
+                ###
 
     # If the 'transitive = true' was enabled, we collected all the protos into
     # the 'targets' list.
@@ -576,7 +578,7 @@ def proto_compile_impl(ctx):
         command = command,
         inputs = protos + data,
         outputs = outputs + [descriptor] + ctx.outputs.outputs,
-        tools = [protoc] + plugin_tools.values()
+        tools = [protoc] + plugin_tools.values(),
     )
 
     ###

@@ -4,9 +4,10 @@ load("@bazel_tools//tools/build_defs/repo:maven_rules.bzl", "maven_jar")
 def github_archive(name, org, repo, ref, sha256):
     """Declare an http_archive from github
     """
+
     # correct github quirk about removing the 'v' in front of tags
     stripRef = ref
-    if stripRef.startswith('v'):
+    if stripRef.startswith("v"):
         stripRef = ref[1:]
 
     if name not in native.existing_rules():
@@ -149,7 +150,7 @@ def com_github_grpc_grpc(**kwargs):
 # Create an issue for this.
 def io_bazel_rules_dotnet(**kwargs):
     name = "io_bazel_rules_dotnet"
-    ref = get_ref(name, "9713688cf5db211319cc706f0ced0543d01af14c", kwargs) # PR#95
+    ref = get_ref(name, "9713688cf5db211319cc706f0ced0543d01af14c", kwargs)  # PR#95
     sha256 = get_sha256(name, "ad058d0e2f13d1729fcd1ba886ebe6e323e21a1a6fc234a1686471ac8dcd5d7e", kwargs)
     github_archive(name, "bazelbuild", "rules_dotnet", ref, sha256)
 
@@ -173,8 +174,8 @@ def com_github_yugui_rules_ruby(**kwargs):
 
 def grpc_ecosystem_grpc_gateway(**kwargs):
     name = "grpc_ecosystem_grpc_gateway"
-    ref = get_ref(name, "8aa3d3f00fbaea619d864e688cd045497aa30fe8", kwargs)  # Oct 2, 2018,
-    sha256 = get_sha256(name, "e21e3a3ac5e2be3869474f1c703db5d4f72e459e07084e9228eaaf2484e0dd48", kwargs)
+    ref = get_ref(name, "b7a5640779183161e8d6c3e51f60f0859b5559ba", kwargs)  # v1.7.0
+    sha256 = get_sha256(name, "3e09264e2c0e96146eb6ec0a7e4315983d9f23939f1ed4c3842a676e79966252", kwargs)
     github_archive(name, "grpc-ecosystem", "grpc-gateway", ref, sha256)
 
 def org_pubref_rules_node(**kwargs):
@@ -222,7 +223,7 @@ def io_bazel_rules_python(**kwargs):
     """python Rules
     """
     name = "io_bazel_rules_python"
-    ref = get_ref(name, "e6399b601e2f72f74e5aa635993d69166784dde1", kwargs) # 2018-12-19
+    ref = get_ref(name, "e6399b601e2f72f74e5aa635993d69166784dde1", kwargs)  # 2018-12-19
     sha256 = get_sha256(name, "2797863749d3266482e156ebe1b7d5cd1893d054ccc8d8ab8b71add5709f5b04", kwargs)
     github_archive(name, "bazelbuild", "rules_python", ref, sha256)
 
